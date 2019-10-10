@@ -33,7 +33,7 @@ namespace DatingApp.API.Controllers
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower(); //permettiamo di accedere sia in maiuscolo e minuscolo
 
             if (await _repo.UserExists(userForRegisterDto.Username)) // vede se c'è gia un nome esistente
-                return BadRequest("Username already exists");
+                return BadRequest("Username già esistente");
 
             var userToCreate = new User
             {
@@ -77,7 +77,10 @@ namespace DatingApp.API.Controllers
 
                 return Ok(new {         // token rimandato ai nostri client
                     token = tokenHandler.WriteToken(token)
-                });
+                });   
+            
+            
+            
 
         }
     }

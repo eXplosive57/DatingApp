@@ -10,7 +10,7 @@ import { AuthService } from './_services/auth.service';
 export class AppComponent implements OnInit {
   jwHelper = new JwtHelperService();
 
-  constructor (private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {         // metodo che ti permette di visualizzare di continuo il nuo username in alto a destra grazia al decodedToken
     const token = localStorage.getItem('token');

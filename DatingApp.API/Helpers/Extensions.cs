@@ -14,9 +14,9 @@ namespace DatingApp.API.Helpers
 
         }
 
-        public static int CalculateAge(this DateTime theDateTime)
+        public static int CalculateAge(this DateTime theDateTime) // metodo che calcola l'età
         {
-            var age = DateTime.Today.Year - theDateTime.Year;
+            var age = DateTime.Today.Year - theDateTime.Year;   //data corrente - data dell'utente
             if(theDateTime.AddYears(age) > DateTime.Today)
                 age--;
                

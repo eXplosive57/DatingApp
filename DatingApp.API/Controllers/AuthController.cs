@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
 using DatingApp.API.Models;
@@ -18,8 +19,10 @@ namespace DatingApp.API.Controllers
     {
         private readonly IAuthRepository _repo; //mettere _ perchè è privata
         private readonly IConfiguration _config; //mettere _ perchè è privata
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
         {
+            _mapper = mapper;
             _config = config;
             _repo = repo;
 
@@ -62,25 +65,29 @@ namespace DatingApp.API.Controllers
             var key = new SymmetricSecurityKey(Encoding.UTF8
                 .GetBytes(_config.GetSection("AppSettings:Token").Value));
 
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-                var tokenDescriptor = new SecurityTokenDescriptor //token che viene creato
-                {
-                    Subject = new ClaimsIdentity(claims), // il token viene creato inserendo l'iD e il nome
-                    Expires = DateTime.Now.AddDays(1), //tempo di scadenza del token
-                    SigningCredentials = creds 
-                };
+            var tokenDescriptor = new SecurityTokenDescriptor //token che viene creato
+            {
+                Subject = new ClaimsIdentity(claims), // il token viene creato inserendo l'iD e il nome
+                Expires = DateTime.Now.AddDays(1), //tempo di scadenza del token
+                SigningCredentials = creds
+            };
 
-                var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHandler = new JwtSecurityTokenHandler();
 
-                var token = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
-                return Ok(new {         // token rimandato ai nostri client
-                    token = tokenHandler.WriteToken(token)
-                });   
-            
-            
-            
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
+
+                return Ok(new
+                {         // token rimandato ai nostri client
+                    token = tokenHandler.WriteToken(token), 
+                    user
+                });
+
+
+
 
         }
     }

@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
 
   model: any = {}; // memorizza nome utente e password che passiamo
+  photoUrl: string;
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   login() {
@@ -33,6 +35,9 @@ export class NavComponent implements OnInit {
 
   logout() {    // metodo per sloggare
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
     this.alertify.message('logged out');
     this.router.navigate(['/home']);    // ci permette di indirizzarci al component home dopo essersi sloggati
   }

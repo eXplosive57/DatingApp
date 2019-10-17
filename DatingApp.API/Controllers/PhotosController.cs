@@ -64,7 +64,7 @@ namespace DatingApp.API.Controllers
 
              var uploadResult = new ImageUploadResult();       // archiviamo il risultato che ci da il cloud
 
-             if (file.Length > 0)
+            if (file.Length > 0)
              {
                  using (var stream = file.OpenReadStream())
                  {
@@ -84,10 +84,12 @@ namespace DatingApp.API.Controllers
 
              var photo = _mapper.Map<Photo>(photoForCreationDto);
 
-             if (!userFromRepo.Photos.Any(u => u.IsMain))       // se questo da FALSE vuol dire che l'utente non ha una foto principale
+            if (!userFromRepo.Photos.Any(u => u.IsMain))       // se questo da FALSE vuol dire che l'utente non ha una foto principale
                 photo.IsMain = true;
 
-                userFromRepo.Photos.Add(photo);
+            userFromRepo.Photos.Add(photo);
+
+            
 
                 if (await _repo.SaveAll())
                 {

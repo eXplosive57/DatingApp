@@ -39,8 +39,8 @@ login(model: any) {     // metodo login (riceviamo il token dal server per poi s
     );
 }
 
-register(model: any) {   // metodo registrazione
-  return this.http.post(this.baseUrl + 'register', model);
+register(user: User) {   // metodo registrazione
+  return this.http.post(this.baseUrl + 'register', user);
 }
 
 loggedIn() {

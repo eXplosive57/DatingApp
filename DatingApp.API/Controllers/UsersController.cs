@@ -26,11 +26,26 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers() // metodo per restitutire una lista di utenti
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams) // metodo per restitutire una lista di utenti
         {
-            var users = await _repo.GetUsers();
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // prende l'id dal token
+
+            var userFromRepo = await _repo.GetUser(currentUserId);
+
+            userParams.UserId = currentUserId;
+
+            if (string.IsNullOrEmpty(userParams.Gender)) 
+            {
+                userParams.Gender = userFromRepo.Gender == "male" ? "female" : "male"; // serve per restiuire il sessp opposto
+            }
+
+            var users = await _repo.GetUsers(userParams);
 
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+
+            Response.AddPagination(users.CurrentPage, users.PageSize,
+                users.TotalCount, users.TotalPages);
+
             return Ok(usersToReturn);
         }
 

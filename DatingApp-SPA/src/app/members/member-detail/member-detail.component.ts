@@ -50,4 +50,10 @@ export class MemberDetailComponent implements OnInit {
 
   }
 
+  // setDefaults() {
+  //   if (this.user.introduction && this.user.lookingFor === '') {
+  //       this.user.introduction = 'default';
+  //   }
+  // }
+
 }

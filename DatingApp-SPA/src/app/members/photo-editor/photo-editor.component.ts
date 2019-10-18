@@ -36,7 +36,7 @@ export class PhotoEditorComponent implements OnInit {
       authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
-      removeAfterUpload: true,    // una volta caricata la foto la togliao dalla coda di upload
+      removeAfterUpload: true,    // una volta caricata la foto la togliamo dalla coda di upload
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024
   });

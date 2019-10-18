@@ -16,6 +16,7 @@ export class AuthService {
   currentUser: User;
   photoUrl = new BehaviorSubject<string>('../../assets/user.png');
   currentPhotoUrl = this.photoUrl.asObservable();
+  user: User;
 
 constructor(private http: HttpClient) { }
 

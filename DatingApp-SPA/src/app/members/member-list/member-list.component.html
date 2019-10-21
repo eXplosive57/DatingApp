@@ -32,7 +32,7 @@
         <div class="col">
             <div class="btn-group float-right">
               <button type="button" name="orderBy" class="btn btn-primary" 
-                [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="lastActive">Ultimi attivi</button>
+                [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="lastActive">Ultimi attivi </button>
               <button type="button" name="orderBy" class="btn btn-primary"
                 [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="created">Nuovi membri</button>
             </div>
@@ -43,7 +43,7 @@
 
     <div class="row">
       <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
-        <app-memebr-card [user]="user"></app-memebr-card>
+        <app-member-card [user]="user"></app-member-card>
       </div>
     </div>
   </div>

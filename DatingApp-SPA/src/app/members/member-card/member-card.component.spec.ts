@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { MemebrCardComponent } from './memebr-card.component';
+import { MemebrCardComponent } from './member-card.component';
 
 describe('MemebrCardComponent', () => {
   let component: MemebrCardComponent;

@@ -1,13 +1,13 @@
 <div class="text-center mt-3">
-    <h2>{{likesParam === 'Likers' ? 'Membri che mi hanno messo like' : 'Membri a cui ho messo like'}} : {{pagination.totalItems}}</h2>
+    <h2>{{likesParam === 'Likers' ? 'I miei seguaci' : 'I miei seguiti'}} : {{pagination.totalItems}}</h2>
   </div>
 
 <div class="container mt-3">
 
   <div class="row">
     <div class="btn-group">
-      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="Likers" (click)="loadUsers()">Membri a cui piaccio</button>
-      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="Likees" (click)="loadUsers()">Membri che mi piacciono</button>
+      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="Likers" (click)="loadUsers()">Seguaci</button>
+      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="Likees" (click)="loadUsers()">Seguiti</button>
     </div>
   </div>
 

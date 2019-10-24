@@ -25,4 +25,12 @@ export class MemebrCardComponent implements OnInit {
     });
   }
 
+  // deleteLike(id: number) {
+  //   this.userService.deleteLike(this.authService.decodedToken.nameid, id).subscribe(() => {
+  //     this.likes.splice(this.likes.findIndex(l => l.likerId === id), 1);
+  // }, error => {
+  //   this.alertify.error(error);
+  // });
+
 }
+

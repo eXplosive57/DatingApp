@@ -104,5 +104,29 @@ namespace DatingApp.API.Controllers
             return BadRequest("Impossibile apprezzare");
 
          }
+
+         [HttpDelete("{id}")] 
+        public async Task<IActionResult> DeleteLike(int id, int recipientId)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+             return Unauthorized();
+
+            var like = await _repo.GetLike(id, recipientId);
+
+            if (like != null) 
+            {
+                _repo.Delete(like);
+            }
+
+            if (await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed to delete the like");
+                
+
+            
+
+            
     }
+}
 }

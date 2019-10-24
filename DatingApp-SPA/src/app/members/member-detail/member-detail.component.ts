@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { User } from '../../_models/user';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -70,4 +70,7 @@ export class MemberDetailComponent implements OnInit {
     this.memberTabs.tabs[tabId].active = true ;
   }
 
+
+
 }
+

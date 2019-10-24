@@ -115,4 +115,8 @@ markAsRead(userId: number, messageId: number) {
   this.http.post(this.baseUrl + 'users/' + userId + '/messages/' + messageId + '/read', {})
     .subscribe();
 }
+
+deleteLike(id: number, recipientId: number) {
+  return this.http.delete(this.baseUrl + 'users/' + id + '/messages/' + recipientId);
+}
 }
